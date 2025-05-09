@@ -1,3 +1,7 @@
+import math    
+
+
+
 def hello(nome):
  print(f"Hello, {nome}!")
  
@@ -18,3 +22,7 @@ def jogodaforca(palavras, tentativas):
  elif palavras == "programacao":
     print("Você acertou!")
     
+    expocencial = math.exp(3)
+    print(expocencial)
+    
+    maior_letra = max(A)

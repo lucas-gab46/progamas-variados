@@ -9,10 +9,19 @@ private:
     std::string modelo;
     std::string marca;
     int ano;
+    int id;
+   int pedido;
+    int itens;
+     int valor;
+    int valorT;
+      
 
 public:
-    Carro(std::string marca, std::string modelo, int ano, int vel = 0, int freio = 0, int aceleracao = 0)
-        : marca(marca), modelo(modelo), ano(ano), vel(vel), freio(freio), aceleracao(aceleracao) {}
+int Fisico;
+    int Juridico;
+    int Cliente;  
+    Carro(std::string marca, std::string modelo, int ano, int vel = 0, int freio = 0, int aceleracao = 0 , int fisico, int juridico, int cliente )
+        : marca(marca), modelo(modelo), ano(ano), vel(vel), freio(freio), aceleracao(aceleracao), Fisico(Fisico), Juridico(Juridico) {}
 
     virtual void fazersom() {
         std::cout << "O Carro está funcionando.\n" << std::endl;
@@ -61,7 +70,6 @@ public:
         std::cout << "Bau: " << bau << "\nCilindradas: " << cilindradas << "\nMarchas: " << marchas << "\n";
     }
 
-    // Getters specific to Moto
     int getBau() const { return bau; }
     int getCilindradas() const { return cilindradas; }
     int getMarchas() const { return marchas; }
@@ -91,10 +99,93 @@ public:
     int getPeso() const { return peso; }
 };
 
+class Pedido : public Carro {
+
+private:
+
+ int id;
+ std::string nome;
+ int pedido;
+ int itens;
+ int valor;
+ int valorT;
+
+ public:
+Pedido(int id, std::string nome, int pedido, int itens, int valorT)
+    : Carro("", "", 0), id(id), nome(nome), pedido(pedido), itens(itens), valorT(valorT) {}
+
+
+
+// Métodos Get
+int get_id() const { return id; }
+std::string get_nome() const { return nome; }
+int get_pedido() const {return pedido;}
+int get_itens() const {return itens;}
+int get_valorT() const {return valorT;}
+
+// Métodos Set
+void set_id(int id) { this->id = id;}
+void set_nome(std::string nome) {  this->id = id;}
+void set_pedido(int pedido) {this->pedido = pedido;}
+void set_itens(int itens)  { this->itens = itens;}
+void set_valorT(int valorT)  {  this->valorT = valorT; }
+};
+
+
+class Cliente : public Carro {
+public:
+
+    Cliente(int Juridico, int Fisico, Cliente c()) 
+ : Cliente("" , "", 0), Juridico(Juridico), Fisico() {}
+    Cliente() {
+        std::cout << "Sou um cliente\n";
+    }
+};
+
+
 int main() {
+
+
+
+   
+    
+   
+
+    Cliente c;
+    Cliente* a0 = new Cliente("Fisico", "350R$");
+    Cliente* a1 = new Cliente("Juridico", "1500R$");
+
+      
     Carro* a1 = new Carro("Toyota", "Corolla", 2020);
     Caminhao* a2 = new Caminhao("Honda", "Civic", 2019, 0, 0, 0, 10000, 5000);
     Moto* a3 = new Moto("Ford", "Focus", 2018, 0, 0, 0, 1, 600, 6);
+
+
+
+     enum Tipocliente {
+JURIDICO,
+FISICO
+}
+    switch (Tipocliente) {
+
+         case 1:
+    if  (Tipocliente  == JURIDICO){
+std::cout << "1 - Juridico" << std::endl;
+        break;
+    }
+    case 2:
+
+     if (Tipocliente == FISICO){
+         std::cout << "2 - Fisico" << std::endl;
+
+         break;    
+    
+    }
+
+     std::cout << "Agora escolha o seu veiculo" << std::endl;
+     a0->imprimirDados();
+
+     
 
     std::cout << "Carro 1:\n";
     a1->imprimirDados();
@@ -124,10 +215,17 @@ int main() {
     std::cout << "Modelo: " << a3->getModelo() << "\n";
     std::cout << "Marchas: " << a3->getMarchas() << "\n";
     std::cout << "Cilindradas: " << a3->getCilindradas() << "\n";
+     
 
+    delete a0;
     delete a1;
     delete a2;
     delete a3;
+   
+
+
+
 
     return 0;
 }
+};
